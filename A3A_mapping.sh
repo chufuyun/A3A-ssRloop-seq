@@ -8,7 +8,7 @@ genome_dir_mm10="/home/limh/cfy/genome/mm10/bwa_index/"
 genome_dir_hg38="/home/limh/cfy/genome/hg38/"
 
 if [ $# -ne 3 ]; then
-    echo "用法: $0 <mm10或hg38> <input_dir> <output_dir>"
+    echo "usage: $0 <mm10 or hg38> <input_dir> <output_dir>"
     exit 1
 fi
 
