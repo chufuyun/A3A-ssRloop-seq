@@ -15,7 +15,7 @@ parser.add_argument('-s', '--summary', help='the summary file', default='summary
 
 args = parser.parse_args()
 
-# 获取开始时间
+
 start_time = time.time()
 #records = []
 
@@ -30,7 +30,7 @@ t1 = args.threshold1
 t2 = args.threshold2
 t3 = args.threshold3
 
-# 定义分类函数
+
 def classify_read(t2, t3):
     if float(t2) >= 40 and float(t3) <= 200:
         return 'ClassI'
@@ -39,8 +39,6 @@ def classify_read(t2, t3):
     else:
         return 'Unclassified'
 
-
-# 定义处理read的函数
 def process_read(read, class_bamfiles, t2, t3):
     xm_tag_value = read.get_tag("XM")
 
@@ -80,12 +78,12 @@ def process_read(read, class_bamfiles, t2, t3):
 
         class_bamfiles[class_folder][output_bamfile_name].write(read)
 
-# 打开输入BAM文件
+
 bamfile = pysam.AlignmentFile(args.input, "rb")
 
 class_bamfiles = {folder: {} for folder in class_folders}
 
-# 检查是否未提供阈值，如果是，则使用默认阈值列表 (t2=40, t3=200) 还有（t2=0,t3=40）
+
 if t2 is None or t3 is None:
     for read in bamfile:
         process_read(read, class_bamfiles, 40, 200)
